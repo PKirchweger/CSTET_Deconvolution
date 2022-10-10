@@ -44,6 +44,7 @@ This PSF will be suitable for all imaging done under the same conditions.
 
 3. BEFORE running the script: 
 
+- change the homedirectory (currently: homedir = '/home/labs/peterk/peterkir/')
 - Adapt the input_values.txt: currently (18.08.2022) this looks like this:
 
 Dual_Axis = Yes
@@ -98,9 +99,4 @@ Files saved by the script:
 - plotfile-sSMOOTH-ncITER-lamsAUXSM-thisisthetomogram_rec.mrc: a plotfile written during the deconvolution
 - avg_2D_FFT*: if Do_summed_FFT = Yes, then the script calculates a summed FFT of the input tomogram and each of the deconvoluted tomograms (Please note: if there are an uneven number of z-slices, FFT doesn't work, only PS works)
 - avg_2D_PS*: if Do_summed_PS = Yes, then the script calculates a summed powerspectrum of the input tomogram and each of the deconvoluted tomograms (this is a good measure if the Fanout looks good, can be overlayed e.g. in ChimeraX)
-
-
-
-
-
 
