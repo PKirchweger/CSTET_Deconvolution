@@ -11,17 +11,15 @@ Tilt file (for single-axis tomograms):
 Tilt files (for dual-axis tomograms):
 - thisisthetomogram_rec_a.tlt
 - thisisthetomogram_rec_b.tlt
-patchcorr log file: 
+patchcorr log file (for dual-axis tomograms: 
 - thisisthetomogram_rec_patchcorr.log
 
 
 2. Generate a PSF: 
 The script looks for the PSF file (called PSF_'PixelSize"nm.mrc in a folder called "PSFs" in the homedirectory. 
 
-if the pixelsize of the tomogram is 40.84 A (or 4.084nm), the PSF is called:
-- PSF_4.084nm.mrc
 
-The new version only needs a PSF with the size of 1x1x1000 pixels (This makes the script faster (The limit is now only the deconvolution step)). 
+The new version only needs a PSF with the size of 1x1x1000 pixels (This makes the script faster). 
 
 Quote from Michael: 
 ##############
@@ -39,8 +37,11 @@ Width, Height, Depth (to match the tomogram, NEW: 1x1x1000 pixels)
 Normalization Sum = 1
 Title PSF_PixelSize_1x1x1000.mrc
 
-This PSF will be suitable for all imaging done under the same conditions. 
+This PSF will be suitable for all imaging done under the same conditions (i.e. same convergance angle and pixel size). 
 #############
+if the pixelsize of the tomogram is 40.84 A (or 4.084nm), the PSF is called:
+Adapt the header of the PSF to match the pixel size (e.g. using alterheader -d) and change the name to PSF_4.084nm.mrc
+
 
 3. BEFORE running the script: 
 
@@ -71,7 +72,7 @@ Memory_MB = 350000
 4. Running the script: 
 
 We use nohup to have it run in the background. Command: 
-nohup python 270422_deconscript.py > yourlogfile.log
+nohup python deconscript.py > yourlogfile.log
 
 
 5. While running the script
