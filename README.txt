@@ -11,17 +11,18 @@ Tilt file (for single-axis tomograms):
 Tilt files (for dual-axis tomograms):
 - thisisthetomogram_rec_a.tlt
 - thisisthetomogram_rec_b.tlt
-patchcorr log file (for dual-axis tomograms: 
+patchcorr log file: 
 - thisisthetomogram_rec_patchcorr.log
 
 
 2. Generate a PSF: 
-The script looks for the PSF file (called PSF_'PixelSize"nm.mrc in a folder called "PSFs" in the homedirectory. 
+The script looks for the PSF file (called PSF_'PixelSize'nm.mrc in a folder called "PSFs" in the defined homedirectory. 
 
+if the pixelsize of the tomogram is 40.84 A (or 4.084nm), the PSF is called:
+- PSF_4.084nm.mrc
 
-The new version only needs a PSF with the size of 1x1x1000 pixels (This makes the script faster). 
+The new version only needs a PSF with the size of 1x1x1000 pixels (This makes the script faster (The limit is now only the deconvolution step)). 
 
-Quote from Michael: 
 ##############
 Create a PSF in Fiji:
 The plugin we've used is 'Deconvolution PSF 3D'. 
@@ -37,16 +38,12 @@ Width, Height, Depth (to match the tomogram, NEW: 1x1x1000 pixels)
 Normalization Sum = 1
 Title PSF_PixelSize_1x1x1000.mrc
 
-This PSF will be suitable for all imaging done under the same conditions (i.e. same convergance angle and pixel size). 
+This PSF will be suitable for all imaging done under the same conditions. 
 #############
-if the pixelsize of the tomogram is 40.84 A (or 4.084nm), the PSF is called:
-Adapt the header of the PSF to match the pixel size (e.g. using alterheader -d) and change the name to PSF_4.084nm.mrc
-
 
 3. BEFORE running the script: 
 
-- change the homedirectory (currently: homedir = '/home/labs/peterk/peterkir/')
-- Adapt the input_values.txt: currently (18.08.2022) this looks like this:
+- Adapt the input_values.txt: currently (12.12.2022) this looks like this:
 
 Dual_Axis = Yes
 Number_of_Iterations = 100
@@ -55,8 +52,6 @@ Auxiliary_smoothing = 200
 Do_summed_FFT = No
 Do_summed_PS = Yes
 
-### EMU1 and EMU2 each have 48 cores in chip, em-unit has 24
-Threads = 48
 ### EMU1 and EMU2 each have 376 GB Memory, em-unit has 264 GB
 Memory_MB = 350000
 
@@ -100,4 +95,9 @@ Files saved by the script:
 - plotfile-sSMOOTH-ncITER-lamsAUXSM-thisisthetomogram_rec.mrc: a plotfile written during the deconvolution
 - avg_2D_FFT*: if Do_summed_FFT = Yes, then the script calculates a summed FFT of the input tomogram and each of the deconvoluted tomograms (Please note: if there are an uneven number of z-slices, FFT doesn't work, only PS works)
 - avg_2D_PS*: if Do_summed_PS = Yes, then the script calculates a summed powerspectrum of the input tomogram and each of the deconvoluted tomograms (this is a good measure if the Fanout looks good, can be overlayed e.g. in ChimeraX)
+
+
+
+
+
 
