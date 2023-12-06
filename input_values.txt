@@ -5,7 +5,5 @@ Auxiliary_smoothing = 200
 Do_summed_FFT = No
 Do_summed_PS = Yes
 
-### EMU1 and EMU2 each have 48 cores in chip, em-unit has 24
-Threads = 48
-### EMU1 and EMU2 each have 376 GB Memory, em-unit has 264 GB
+### EMU1 and EMU2 servers @WIS each have 376 GB Memory, em-unit server @ WIS has 264 GB
 Memory_MB = 350000
